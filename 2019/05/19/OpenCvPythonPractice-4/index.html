@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/mine.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/mine.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/mine.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/mine.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="直方图反向投影">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV的Python实践(4)">
+<meta property="og:url" content="http://yoursite.com/2019/05/19/OpenCvPythonPractice-4/index.html">
+<meta property="og:site_name" content="岁月无痕">
+<meta property="og:description" content="直方图反向投影">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-19T16:24:48.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenCV的Python实践(4)">
+<meta name="twitter:description" content="直方图反向投影">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/19/OpenCvPythonPractice-4/">
+
+
+
+
+
+  <title>OpenCV的Python实践(4) | 岁月无痕</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">岁月无痕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/OpenCvPythonPractice-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KR">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="岁月无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenCV的Python实践(4)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T10:15:00+08:00">
+                2019-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV的Python实践/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV的Python实践</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="直方图反向投影"><a href="#直方图反向投影" class="headerlink" title="直方图反向投影"></a>直方图反向投影</h2><a id="more"></a>
+<p>&emsp;&emsp;直方图反向投影用来做图像分割，或者在图像中寻找感兴趣的部分。<br>&emsp;&emsp;简单来说，直方图反向投影会输出与输入图像(待搜索)同样大小的图像，其中的每一个像素值代表输入图像上对应点属于目标对象的概率，用更简单的话说，输出图像中像素值越高(越白)的点，越可能代表我们要搜素的目标(在输入图像所在的位置)。<br>&emsp;&emsp;如何实现这个算法呢？</p>
+<ul>
+<li>首先要为一张包含我们待查找目标的图像创建直方图，最好使用颜色直方图，因为一个物体的颜色要比灰度更好的被用来进行图像分割与对象识别。</li>
+<li>把这个颜色直方图投影到输入图像中寻找我们的目标。也就是找到输入图像中的每一个像素点的像素值在直方图中对应的概率，得到一个概率图像。</li>
+<li>最后设置适当的阈值，对概率图像进行而二值化。就这么简单。</li>
+</ul>
+<ol>
+<li>Numpy中的算法：</li>
+</ol>
+<ul>
+<li>首先创建两幅颜色直方图，目标图像(待搜索)的直方图(‘M’)，输入图像直方图(‘I’)</li>
+<li>计算比值R=M/I,得到反向投影R，根据R这个调色板创建一幅新图像，其中每一个像素代表这个点就是目标的概率。输出图像中灰度值最大的地方就是要查找的目标的位置，如果要找的是一个区域，使用一个阈值对图像进行二值化后可得到结果。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">'psb.jpg'</span>)</span><br><span class="line">hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)</span><br><span class="line">target=cv2.imread(<span class="string">'psbPart.jpg'</span>)</span><br><span class="line">hsvt=cv2.cvtColor(target,cv2.COLOR_BGR2HSV)</span><br><span class="line">M=cv2.calcHist([hsv],[<span class="number">0</span>,<span class="number">1</span>],<span class="literal">None</span>,[<span class="number">180</span>,<span class="number">256</span>],[<span class="number">0</span>,<span class="number">180</span>,<span class="number">0</span>,<span class="number">256</span>])</span><br><span class="line">I=cv2.calcHist([hsvt],[<span class="number">0</span>,<span class="number">1</span>],<span class="literal">None</span>,[<span class="number">180</span>,<span class="number">256</span>],[<span class="number">0</span>,<span class="number">180</span>,<span class="number">0</span>,<span class="number">256</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#代码有问题  圆盘算子做卷积 B=D x B 其中D为卷积核</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">h,s,v=cv2.split(hsvt)</span></span><br><span class="line"><span class="string">B=R[h.ravel(),s.ravel()]</span></span><br><span class="line"><span class="string">B=np.minimum(B,1)</span></span><br><span class="line"><span class="string">B=B.reshape(hsvt.shape[:2])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">disc=cv2.getStructuringElement(cv2.MORPH_ELLTPSE,(5,5))</span></span><br><span class="line"><span class="string">B=cv2.filter2D(B,-1,disc)</span></span><br><span class="line"><span class="string">B=np.uint8(B)</span></span><br><span class="line"><span class="string">cv2.normalize(B,B,0,255,cv2.NORM_MINMAX)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ret,thresh=cv2.threshold(B,50,255,0)</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>OpenCV中的直方图反向投影<br>&emsp;&emsp;OpenCV提供cv2.calcBackProject()做直方图投影。其参数与cv2.calHist基本相同。其中一个参数是我们要查找目标的直方图，同样再使用目标的直方图做反向投影之前，我们应该先对其做归一化处理。返回结果是一个概率图像，再使用圆盘形卷积核对其做卷操作，最后使用阈值进行二值化。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="comment">#在输入图像中搜索目标图像</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">smallimg_ToFind = cv2.imread(<span class="string">'hair.jpg'</span>)</span><br><span class="line">hsv=cv2.cvtColor(smallimg_ToFind,cv2.COLOR_BGR2HSV)</span><br><span class="line">inputImg=cv2.imread(<span class="string">'psb.jpg'</span>)</span><br><span class="line">hsvt=cv2.cvtColor(inputImg,cv2.COLOR_BGR2HSV)</span><br><span class="line"></span><br><span class="line">hsvhist=cv2.calcHist([hsv],[<span class="number">0</span>,<span class="number">1</span>],<span class="literal">None</span>,[<span class="number">180</span>,<span class="number">256</span>],[<span class="number">0</span>,<span class="number">180</span>,<span class="number">0</span>,<span class="number">256</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#归一化：原始图像，结果图像，映射到结果图像中的最小最大值，归一化类型</span></span><br><span class="line"><span class="comment">#cv2.NORM_MINMAX 对数组所有值进行转化，使它们线性映射到最小值和最大值之间</span></span><br><span class="line"><span class="comment">#归一化后的直方图便于显示，成为0到255之间的数。</span></span><br><span class="line">cv2.normalize(hsvhist,hsvhist,<span class="number">0</span>,<span class="number">255</span>,cv2.NORM_MINMAX);</span><br><span class="line">dst=cv2.calcBackProject([hsvt],[<span class="number">0</span>,<span class="number">1</span>],hsvhist,[<span class="number">0</span>,<span class="number">180</span>,<span class="number">0</span>,<span class="number">256</span>],<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#此处卷积把分散的点连在一起</span></span><br><span class="line">disc=cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">dst=cv2.filter2D(dst,<span class="number">-1</span>,disc)</span><br><span class="line"></span><br><span class="line">ret,thresh=cv2.threshold(dst,<span class="number">50</span>,<span class="number">255</span>,<span class="number">0</span>)</span><br><span class="line">thresh=cv2.merge((thresh,thresh,thresh))</span><br><span class="line"><span class="comment">#裁剪</span></span><br><span class="line">res=cv2.bitwise_and(inputImg,thresh)</span><br><span class="line"></span><br><span class="line">res=np.hstack((inputImg,thresh,res))</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">    cv2.imshow(<span class="string">'res'</span>,res)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey() == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><p>&emsp;&emsp;傅里叶变换用于分析不同滤波器的频率特性，我们可以使用2D离散傅里叶变换（DFT）分析图像的频域特性。实现DFT的快速算法被称为快速傅里叶变化（FFT）。<br>&emsp;&emsp;对于一个正弦信号，频率为f，如果把它转到频域表示，会在频率f中看到一个峰值，如果信号由采样产生的离散信号组成，会得到类似的频谱图，只不过前面是连续的，现在是离散的。把图像想象成沿两个方向采集的信号。所以对图像同时进行X方向和Y方向的傅里叶变换，就会得到这幅图像的频域表示（频谱图）。</p>
+<ol>
+<li>Numpy中的傅里叶变换<br>&emsp;&emsp;np.fft.fft2()可对信号进行频率转换，输出结果是一个复杂的数组。第一个参数是输入图像(要求灰度图)，第二个参数可选，决定输出数组的大小。默认输出数组大小和输入图像的数组大小一样，如果输出结果比输入图像大，输入图像在进行FFT前补0，如果输出结果比输入图像小，输入图像就会被切割。<br>&emsp;&emsp;np.fft.fft2()的结果，频率为0的部分(直流分量)在输出图像的左上角，如果想让它在输出图像的中心，需将结果沿两个方向平移N/2,函数np.fft.fftshift()可以实现这一步。<br>&emsp;&emsp;进行完频率变换后，就可以构建振幅谱了。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"psb.jpg"</span>,<span class="number">0</span>)</span><br><span class="line">f=np.fft.fft2(img)</span><br><span class="line">fshift=np.fft.fftshift(f)</span><br><span class="line"></span><br><span class="line">magnitude_spectrum=<span class="number">20</span>*np.log(np.abs(fshift))</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'Input Image'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">122</span>),plt.imshow(magnitude_spectrum,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'Magnitude Spectrum'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>现在进行频域变换，我们可以在频域对图像进行一些操作。<br>例如高通滤波和重建图像（DFT的逆变换）。<br>比如使用一个60x60的矩形窗口对图像进行掩模操作从而去除低频分量。然后在使用函数np.fft.ifftshift()进行逆平移操作，所以直流分量又回到左上角了，然后使用np.ifft2()进行FFT逆变换，同样得到一堆复杂的数字，对他们取绝对值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="comment">#高通滤波</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"1.jpg"</span>,<span class="number">0</span>)</span><br><span class="line">f=np.fft.fft2(img)</span><br><span class="line">fshift=np.fft.fftshift(f)</span><br><span class="line">magnitude_spectrum=<span class="number">20</span>*np.log(np.abs(fshift))</span><br><span class="line"></span><br><span class="line">rows,cols=img.shape</span><br><span class="line">crow,ccol=rows/<span class="number">2</span>,cols/<span class="number">2</span></span><br><span class="line">fshift[int(crow<span class="number">-30</span>):int(crow+<span class="number">30</span>),int(ccol<span class="number">-30</span>):int(ccol+<span class="number">30</span>)]=<span class="number">0</span></span><br><span class="line">f_ishift=np.fft.ifftshift(fshift)</span><br><span class="line">img_back=np.fft.ifft2(f_ishift)</span><br><span class="line"></span><br><span class="line">img_back=np.abs(img_back)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">131</span>),plt.imshow(img,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'Input Image'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">132</span>),plt.imshow(img_back,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'Image after HPF'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">133</span>),plt.imshow(img_back)</span><br><span class="line">plt.title(<span class="string">'Result in JET'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>上面的高通滤波其实是一种边界检测操作。<br>&emsp;&emsp;图像的大部分数据集中在频谱图的低频区域。</p>
+<ol start="2">
+<li>OpenCV中的傅里叶变换<br>&emsp;&emsp;OpenCV相应的函数为cv2.dft()和cv2.idft,和前面的输出结果一样，但是是双通道的。第一个通道是结果的实数部分，第二个通道是结果的虚数部分。输入图像首先转换成np.float32格式。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"psb.jpg"</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">dft=cv2.dft(np.float32(img),flags=cv2.DFT_COMPLEX_OUTPUT)</span><br><span class="line">dft_shift=np.fft.fftshift(dft)</span><br><span class="line"></span><br><span class="line">magnitude_spectrum=<span class="number">20</span>*np.log(cv2.magnitude(dft_shift[:,:,<span class="number">0</span>],dft_shift[:,:,<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'Input Image'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">122</span>),plt.imshow(magnitude_spectrum,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'magnitude_spectrum'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>前面我们实现了一个HPF高通滤波，现在我们来做LPF(低通滤波)将高频部分出去除。其实就是对图像进行模糊操作。首先我们需要构建一个掩模，与低频区域对应的地方设置为1，与高频区域对应的地方设置为0.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="comment">#低通滤波  (图形模糊化)</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"psb.jpg"</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">dft=cv2.dft(np.float32(img),flags=cv2.DFT_COMPLEX_OUTPUT)</span><br><span class="line">dft_shift=np.fft.fftshift(dft)</span><br><span class="line"></span><br><span class="line">magnitude_spectrum=<span class="number">20</span>*np.log(cv2.magnitude(dft_shift[:,:,<span class="number">0</span>],dft_shift[:,:,<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">rows,cols=img.shape</span><br><span class="line">crow,ccol=rows/<span class="number">2</span>,cols/<span class="number">2</span></span><br><span class="line"></span><br><span class="line">mask=np.zeros((rows,cols,<span class="number">2</span>),np.uint8)</span><br><span class="line">mask[int(crow<span class="number">-30</span>):int(crow+<span class="number">30</span>),int(ccol<span class="number">-30</span>):int(ccol+<span class="number">30</span>)]=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">fshift=dft_shift*mask</span><br><span class="line">f_ishift=np.fft.ifftshift(fshift)</span><br><span class="line">img_back=cv2.idft(f_ishift)</span><br><span class="line">img_back=cv2.magnitude(img_back[:,:,<span class="number">0</span>],img_back[:,:,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">121</span>),plt.imshow(img,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'Input Image'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.subplot(<span class="number">122</span>),plt.imshow(img_back,cmap=<span class="string">'gray'</span>)</span><br><span class="line">plt.title(<span class="string">'img_back'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>OpenCV中的函数cv2.dft()cv2.idft()比Numpy快，但Numpy函数使用更加用户友好。</p>
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><p>模式匹配是用来在一幅大图中搜寻模板图像位置的方法。<br>和2D卷积一样，它也是利用模板图像在输入图像(大图)上滑动，并在每一个位置对模板图像和与其对应的输入图像的子区域进行比较。返回结果是一个灰度图像，每一个像素值代表此区域与模板的匹配程度。<br>OpenCV提供了函数cv2.matchTemplate()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"psb.jpg"</span>,<span class="number">0</span>)</span><br><span class="line">img2=img.copy()</span><br><span class="line">template=cv2.imread(<span class="string">"psbPart.jpg"</span>,<span class="number">0</span>)</span><br><span class="line">w,h=template.shape[::<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">methods=[<span class="string">'cv2.TM_CCOEFF'</span>,<span class="string">'cv2.TM_CCOEFF_NORMED'</span>,<span class="string">'cv2.TM_CCORR'</span>,<span class="string">'cv2.TM_CCORR_NORMED'</span>,<span class="string">'cv2.TM_SQDIFF'</span>,<span class="string">'cv2.TM_SQDIFF_NORMED'</span>]</span><br><span class="line"><span class="keyword">for</span> meth <span class="keyword">in</span> methods:</span><br><span class="line">	img=img2.copy()</span><br><span class="line">	method=eval(meth)<span class="comment">#eval运算储存在字符串里有效的python表达式</span></span><br><span class="line">	res=cv2.matchTemplate(img,template,method)</span><br><span class="line">	min_val,max_val,min_loc,max_loc=cv2.minMaxLoc(res)</span><br><span class="line">	<span class="comment">#使用不同的比较方法，对结果的解释不同</span></span><br><span class="line">	<span class="keyword">if</span> method <span class="keyword">in</span>[cv2.TM_SQDIFF,cv2.TM_SQDIFF_NORMED]:</span><br><span class="line">		top_left=min_loc</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		top_left=max_loc</span><br><span class="line">	bottom_right=(top_left[<span class="number">0</span>]+w,top_left[<span class="number">1</span>]+h)</span><br><span class="line">	</span><br><span class="line">	cv2.rectangle(img,top_left,bottom_right,<span class="number">255</span>,<span class="number">2</span>)</span><br><span class="line">	</span><br><span class="line">	plt.subplot(<span class="number">121</span>),plt.imshow(res,cmap=<span class="string">'gray'</span>)</span><br><span class="line">	plt.title(<span class="string">'Matching Result'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">	plt.subplot(<span class="number">122</span>),plt.imshow(img,cmap=<span class="string">'gray'</span>)</span><br><span class="line">	plt.title(<span class="string">'Detected Point'</span>),plt.xticks([]),plt.yticks([])</span><br><span class="line">	plt.suptitle(meth)</span><br><span class="line">	</span><br><span class="line">	plt.show()</span><br></pre></td></tr></table></figure></p>
+<h2 id="多对象的模式匹配"><a href="#多对象的模式匹配" class="headerlink" title="多对象的模式匹配"></a>多对象的模式匹配</h2><p>之前在大图中模版图片只出现了一次，如果模板图片出现了很多次，函数cv2.minMaxLoc()只会给出最大最小值，此时就需要使用阈值了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">img_rgb=cv2.imread(<span class="string">"psbmul.jpg"</span>)</span><br><span class="line">img_gray=cv2.cvtColor(img_rgb,cv2.COLOR_BGR2GRAY)</span><br><span class="line">template=cv2.imread(<span class="string">'psbPart.jpg'</span>,<span class="number">0</span>)</span><br><span class="line">w,h=template.shape[:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">res=cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)</span><br><span class="line">threshold=<span class="number">0.8</span></span><br><span class="line"></span><br><span class="line">loc=np.where(res&gt;=threshold)</span><br><span class="line"><span class="keyword">for</span> pt <span class="keyword">in</span> zip(*loc[::<span class="number">-1</span>]):</span><br><span class="line">	cv2.rectangle(img_rgb,pt,(pt[<span class="number">0</span>]+w,pt[<span class="number">1</span>]+h),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">    cv2.imshow(<span class="string">'res'</span>,img_rgb)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey() == ord(<span class="string">'q'</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure></p>
+<h2 id="Hough霍夫直线变换"><a href="#Hough霍夫直线变换" class="headerlink" title="Hough霍夫直线变换"></a>Hough霍夫直线变换</h2><p>&emsp;&emsp;霍夫变换在检测各种形状的技术中非常流行，如果待检测的形状可以用数学表达式写出来，就可以使用霍夫变换检测它，即使要检测的形状存在一点破坏或者扭曲也可以使用。<br>&emsp;&emsp;下面以使用霍夫变换检测直线为例子说明<br>&emsp;&emsp;一条直线的数学表达式y=mx+c或者r=xcosO+YsinO表示，r表示原点到直线的垂直距离，O是直线的垂线与横轴顺时针方向的夹角。<br>cv2.HoughLines()返回值就是(r,O),r的单位是像素，O的单位是弧度。</p>
+<ul>
+<li>第一个参数：二值化图像(所以霍夫变换之前需要二值化或Canny边缘检测)</li>
+<li>第二，第三个参数：分别代表r和O的精确度。</li>
+<li>第四个参数：阈值，只有累加其中的值高于阈值时才被认为是一条直线。也可看成是能检测到的直线的最短长度(以像素点为单位)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"psb.jpg"</span>)</span><br><span class="line">gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line">edges=cv2.Canny(gray,<span class="number">50</span>,<span class="number">150</span>,apertureSize=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">minLineLength=<span class="number">100</span></span><br><span class="line">maxLineGap=<span class="number">10</span></span><br><span class="line"></span><br><span class="line">lines=cv2.HoughLinesP(edges,<span class="number">1</span>,np.pi/<span class="number">180</span>,<span class="number">100</span>,minLineLength,maxLineGap)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x1,y1,x2,y2 <span class="keyword">in</span> lines[<span class="number">0</span>]:</span><br><span class="line">	cv2.line(img,(x1,y1),(x2,y2),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">	cv2.imshow(<span class="string">'edges'</span>,edges)</span><br><span class="line">	cv2.imshow(<span class="string">'res'</span>,img)</span><br><span class="line">	<span class="keyword">if</span> cv2.waitKey() == ord(<span class="string">'q'</span>):</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Hough霍夫圆环变换"><a href="#Hough霍夫圆环变换" class="headerlink" title="Hough霍夫圆环变换"></a>Hough霍夫圆环变换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"psb.jpg"</span>,<span class="number">0</span>)</span><br><span class="line">img=cv2.medianBlur(img,<span class="number">5</span>)</span><br><span class="line">cimg=cv2.cvtColor(img,cv2.COLOR_GRAY2BGR)</span><br><span class="line"></span><br><span class="line">circles=cv2.HoughCircles(img,cv2.HOUGH_GRADIENT,<span class="number">1</span>,<span class="number">20</span>,param1=<span class="number">50</span>,param2=<span class="number">30</span>,minRadius=<span class="number">0</span>,maxRadius=<span class="number">0</span>)</span><br><span class="line">circles=np.uint16(np.around(circles))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> circles[<span class="number">0</span>,:]:</span><br><span class="line">	cv2.circle(cimg,(i[<span class="number">0</span>],i[<span class="number">1</span>]),i[<span class="number">2</span>],(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>),<span class="number">2</span>)</span><br><span class="line">	cv2.circle(cimg,(i[<span class="number">0</span>],i[<span class="number">1</span>]),<span class="number">2</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">	cv2.imshow(<span class="string">'detected circles'</span>,cimg)</span><br><span class="line">	<span class="keyword">if</span> cv2.waitKey() == ord(<span class="string">'q'</span>):</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h2 id="分水岭算法图像分割"><a href="#分水岭算法图像分割" class="headerlink" title="分水岭算法图像分割"></a>分水岭算法图像分割</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python27_13\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">img=cv2.imread(<span class="string">"code.jpg"</span>)</span><br><span class="line">gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line">ret,thresh=cv2.threshold(gray,<span class="number">0</span>,<span class="number">255</span>,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)</span><br><span class="line"></span><br><span class="line"><span class="comment">#noise removal</span></span><br><span class="line">kernel=np.ones((<span class="number">3</span>,<span class="number">3</span>),np.uint8)</span><br><span class="line">opening=cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel,iterations=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#sure background area</span></span><br><span class="line">sure_bg=cv2.dilate(opening,kernel,iterations=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">dist_transform=cv2.distanceTransform(opening,<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">ret,sure_fg=cv2.threshold(dist_transform,<span class="number">0.7</span>*dist_transform.max(),<span class="number">255</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">sure_fg=np.uint8(sure_fg)</span><br><span class="line">unknown=cv2.subtract(sure_bg,sure_fg)</span><br><span class="line"></span><br><span class="line">ret,markers1=cv2.connectedComponents(sure_fg)</span><br><span class="line">markers=markers1+<span class="number">1</span></span><br><span class="line">markers[unknown==<span class="number">255</span>]=<span class="number">0</span></span><br><span class="line">markers3=cv2.watershed(img,markers)</span><br><span class="line">img[markers3==<span class="number">-1</span>]=[<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">	cv2.imshow(<span class="string">'res'</span>,img)</span><br><span class="line">	<span class="keyword">if</span> cv2.waitKey() == ord(<span class="string">'q'</span>):</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h2 id="用GrabCut算法进行交互式前景提取"><a href="#用GrabCut算法进行交互式前景提取" class="headerlink" title="用GrabCut算法进行交互式前景提取"></a>用GrabCut算法进行交互式前景提取</h2><h2 id="图像特征的提取与描述"><a href="#图像特征的提取与描述" class="headerlink" title="图像特征的提取与描述"></a>图像特征的提取与描述</h2><h2 id="Harris角点检测"><a href="#Harris角点检测" class="headerlink" title="Harris角点检测"></a>Harris角点检测</h2><p>特征检测器。</p>
+<h2 id="Shi-Tomasi角点检测-适合跟踪的图像特征"><a href="#Shi-Tomasi角点检测-适合跟踪的图像特征" class="headerlink" title="Shi-Tomasi角点检测(适合跟踪的图像特征)"></a>Shi-Tomasi角点检测(适合跟踪的图像特征)</h2><p>特征检测器。</p>
+<h2 id="尺度不变特征变换-SIFT"><a href="#尺度不变特征变换-SIFT" class="headerlink" title="尺度不变特征变换(SIFT)"></a>尺度不变特征变换(SIFT)</h2><p>使用SIFT算法进行关键点检测和描述。</p>
+<h2 id="加速稳健特征算法-SURF"><a href="#加速稳健特征算法-SURF" class="headerlink" title="加速稳健特征算法(SURF)"></a>加速稳健特征算法(SURF)</h2><p>加速版的SIFT算法。</p>
+<h2 id="FAST算法特征检测器"><a href="#FAST算法特征检测器" class="headerlink" title="FAST算法特征检测器"></a>FAST算法特征检测器</h2><h2 id="BRIEF特征点描述符"><a href="#BRIEF特征点描述符" class="headerlink" title="BRIEF特征点描述符"></a>BRIEF特征点描述符</h2><p>一种对特征点描述符计算和匹配的快速方法</p>
+<h2 id="ORB算法"><a href="#ORB算法" class="headerlink" title="ORB算法"></a>ORB算法</h2><p>FAST关键点检测和BRIEF关键点描述符的结合体。</p>
+<h2 id="Brute-Force特征匹配"><a href="#Brute-Force特征匹配" class="headerlink" title="Brute-Force特征匹配"></a>Brute-Force特征匹配</h2><h2 id="FLANN匹配器"><a href="#FLANN匹配器" class="headerlink" title="FLANN匹配器"></a>FLANN匹配器</h2><h2 id="使用特征匹配和单应性查找对象"><a href="#使用特征匹配和单应性查找对象" class="headerlink" title="使用特征匹配和单应性查找对象"></a>使用特征匹配和单应性查找对象</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/18/OpenCvPythonPractice-3/" rel="next" title="OpenCV的Python实践(3)">
+                <i class="fa fa-chevron-left"></i> OpenCV的Python实践(3)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/20/OpenCvPythonPractice-5/" rel="prev" title="OpenCV的Python实践(5)">
+                OpenCV的Python实践(5) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDIzOC8yMDc3MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="KR">
+            
+              <p class="site-author-name" itemprop="name">KR</p>
+              <p class="site-description motion-element" itemprop="description">Make a difference,Life is fun</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#直方图反向投影"><span class="nav-number">1.</span> <span class="nav-text">直方图反向投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#傅里叶变换"><span class="nav-number">2.</span> <span class="nav-text">傅里叶变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式匹配"><span class="nav-number">3.</span> <span class="nav-text">模式匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多对象的模式匹配"><span class="nav-number">4.</span> <span class="nav-text">多对象的模式匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hough霍夫直线变换"><span class="nav-number">5.</span> <span class="nav-text">Hough霍夫直线变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hough霍夫圆环变换"><span class="nav-number">6.</span> <span class="nav-text">Hough霍夫圆环变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分水岭算法图像分割"><span class="nav-number">7.</span> <span class="nav-text">分水岭算法图像分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用GrabCut算法进行交互式前景提取"><span class="nav-number">8.</span> <span class="nav-text">用GrabCut算法进行交互式前景提取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像特征的提取与描述"><span class="nav-number">9.</span> <span class="nav-text">图像特征的提取与描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Harris角点检测"><span class="nav-number">10.</span> <span class="nav-text">Harris角点检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shi-Tomasi角点检测-适合跟踪的图像特征"><span class="nav-number">11.</span> <span class="nav-text">Shi-Tomasi角点检测(适合跟踪的图像特征)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尺度不变特征变换-SIFT"><span class="nav-number">12.</span> <span class="nav-text">尺度不变特征变换(SIFT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加速稳健特征算法-SURF"><span class="nav-number">13.</span> <span class="nav-text">加速稳健特征算法(SURF)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAST算法特征检测器"><span class="nav-number">14.</span> <span class="nav-text">FAST算法特征检测器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BRIEF特征点描述符"><span class="nav-number">15.</span> <span class="nav-text">BRIEF特征点描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORB算法"><span class="nav-number">16.</span> <span class="nav-text">ORB算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brute-Force特征匹配"><span class="nav-number">17.</span> <span class="nav-text">Brute-Force特征匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FLANN匹配器"><span class="nav-number">18.</span> <span class="nav-text">FLANN匹配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用特征匹配和单应性查找对象"><span class="nav-number">19.</span> <span class="nav-text">使用特征匹配和单应性查找对象</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KR</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom"></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
