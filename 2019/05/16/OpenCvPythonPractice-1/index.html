@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="OpenCV,">
 
 
 
@@ -90,13 +90,14 @@
 
 
 <meta name="description" content="升级pip">
+<meta name="keywords" content="OpenCV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV的Python实践(1)">
 <meta property="og:url" content="http://yoursite.com/2019/05/16/OpenCvPythonPractice-1/index.html">
 <meta property="og:site_name" content="岁月无痕">
 <meta property="og:description" content="升级pip">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-18T00:36:36.542Z">
+<meta property="og:updated_time" content="2019-05-20T08:09:00.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV的Python实践(1)">
 <meta name="twitter:description" content="升级pip">
@@ -397,7 +398,7 @@
 <p>window的cmd模式下查询当前pip版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip show pip</span><br></pre></td></tr></table></figure></p>
 <p>window的cmd模式下升级pip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;安装cv2的时候出现”Requirement already satisfied”的问题无法使用python -m pip install opencv-python自动安装，可能是因为我的python版本经常换来换去的原因。通过指定安装路径解决，启动自动安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install --target=D:\Python27_13\Lib\site-packages opencv-python</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;好吧，可能因为网络原因，我的网是真的慢，安装到一半还是失败，但是获取了相关whl的信息，我直接去下载这个opencv_python-4.1.0.25-cp36-cp36m-win32.whl来手动安装。用迅雷下载这个25兆的文件用了将近5分钟。–upgrade安装时强制替换老版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install --upgrade --target=D:\Python27_13\Lib\site-packages D:\numpy-1.16.3-cp36-cp36m-win32.whl</span><br><span class="line">python -m pip install --upgrade --target=D:\Python27_13\Lib\site-packages D:\opencv_python-4.1.0.25-cp36-cp36m-win32.whl</span><br><span class="line">python -m pip install --upgrade --target=D:\Python27_13\Lib\site-packages D:\matplotlib-3.0.3-cp36-cp36m-win32.whl</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;好吧，可能因为网络原因，我的网是真的慢，安装到一半还是失败，但是获取了相关whl的信息，我直接去下载这个opencv_python-4.1.0.25-cp36-cp36m-win32.whl来手动安装。用迅雷下载这个25兆的文件用了将近5分钟。–upgrade  –target= 安装时强制替换更新老版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install --upgrade --target=D:\Python27_13\Lib\site-packages D:\numpy-1.16.3-cp36-cp36m-win32.whl</span><br><span class="line">python -m pip install --upgrade --target=D:\Python27_13\Lib\site-packages D:\opencv_python-4.1.0.25-cp36-cp36m-win32.whl</span><br><span class="line">python -m pip install --upgrade --target=D:\Python27_13\Lib\site-packages D:\matplotlib-3.0.3-cp36-cp36m-win32.whl</span><br></pre></td></tr></table></figure></p>
 <p>环境配置成功</p>
 <h2 id="显示保存图片"><a href="#显示保存图片" class="headerlink" title="显示保存图片"></a>显示保存图片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!D:\Python34\python.exe</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#python3.6.8</span></span><br><span class="line"><span class="comment">#显示保存图片</span></span><br><span class="line"><span class="keyword">import</span> cv2   </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib  <span class="comment"># python -m pip install matplotlib-3.0.3-cp36-cp36m-win32.whl</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#print("cv2版本"+cv2.__version__)</span></span><br><span class="line"><span class="comment">#print(np.version.version)</span></span><br><span class="line"><span class="comment">#print(matplotlib.__version__)</span></span><br><span class="line"><span class="comment">#读取图片</span></span><br><span class="line">img=cv2.imread(<span class="string">'arterialImg.png'</span>,cv2.IMREAD_GRAYSCALE)  </span><br><span class="line">img2=cv2.imread(<span class="string">'arterialImg.png'</span>,cv2.IMREAD_COLOR)  </span><br><span class="line"><span class="comment">#cv2.IMREAD_COLOR 彩色模式忽略透明度，cv2.IMREAD_GRAYSCALE 灰度模式</span></span><br><span class="line"><span class="comment">#显示图片</span></span><br><span class="line">cv2.imshow(<span class="string">'image'</span>,img)</span><br><span class="line">cv2.imshow(<span class="string">'image2'</span>,img2)</span><br><span class="line">k=cv2.waitKey(<span class="number">0</span>) <span class="comment">#0毫秒内无限等待键盘输入，检测键是否按下</span></span><br><span class="line"><span class="keyword">if</span> k==<span class="number">27</span>:</span><br><span class="line">	cv2.destroyAllWindows() <span class="comment">#ESC按下</span></span><br><span class="line"><span class="keyword">elif</span> k==ord(<span class="string">'s'</span>):</span><br><span class="line">	<span class="comment">#print("保存图片")</span></span><br><span class="line">	<span class="comment">#cv2.imwrite("mess.jpg",img)</span></span><br><span class="line">	cv2.destroyAllWindows()</span><br><span class="line">cv2.destroyAllWindows() </span><br><span class="line">print(<span class="string">"结束"</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="使用Matplotlib"><a href="#使用Matplotlib" class="headerlink" title="使用Matplotlib"></a>使用Matplotlib</h2><p>Matplotlib是python的一个绘图库，包含各种各样的绘图方法。</p>
@@ -452,6 +453,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+          
+        </div>
       
 
       
@@ -561,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -583,7 +590,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
