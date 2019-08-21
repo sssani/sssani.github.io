@@ -43,8 +43,8 @@
     <url>%2F2019%2F05%2F20%2FcrawlingDataHello%2F</url>
     <content type="text"><![CDATA[安装模块安装requests。1python -m pip install requests 安装beautifulsoup4。1python -m pip install --upgrade --target=D:\Python34\Lib\site-packages D:\out\python\beautifulsoup4-4.7.1-py3-none-any.whl 检查当前pip已安装的模块1pip list Requests：是使用Apache2Licensed许可证的基于Python开发的HTTP库，其在Python内置模块的基础上进行了高度的封装，从而使得Pythoner进行网络请求时，变得美好了许多，使用Requests可以轻而易举的完成浏览器可有的任何操作。BeautifulSoup：是一个模块，该模块用于接收一个HTML或XML字符串，然后将其进行格式化，之后遍可以使用他提供的方法进行快速查找指定元素，从而使得在HTML或XML中查找指定元素变得简单。 12345678910111213141516171819202122232425262728293031323334353637#!D:\Python34\python.exe# -*- coding: utf-8 -*-#python3.6.8import uuidimport requestsfrom bs4 import BeautifulSoupreponse=requests.get('https://www.autohome.com.cn/news/')#reponse.apparent_encoding 获取文本的原来编码#reponse.encoding 对文本编码进行设置#reponse.text 获取文本内容，str类型#reponse.content 获取数据，byte类型#reponse.status_code 获取响应状态码reponse.encoding = reponse.apparent_encoding#获取文本原来编码，使两者编码一致才能正确显示soup=BeautifulSoup(reponse.text,'html.parser')target = soup.find(id="auto-channel-lazyload-article")#find根据属性去获取对象，id,attr,tag...自定义属性自定义标签都可以查找#对于获取的标签对象，obj.text获取文本obj.attrs获取属性字典li_list = target.find_all('li')for li in li_list: a_tag = li.find('a') if a_tag: href = a_tag.attrs.get("href") title = a_tag.find("h3").text img_src = "http:"+a_tag.find("img").attrs.get('src') print(href) print(title) print(img_src) img_reponse = requests.get(url=img_src) #设置一个不重复的图片名 file_name = str(uuid.uuid4())+'.jpg' with open(file_name,'wb') as fp: fp.write(img_reponse.content)]]></content>
       <tags>
-        <tag>爬取数据</tag>
         <tag>python</tag>
+        <tag>爬取数据</tag>
       </tags>
   </entry>
   <entry>
@@ -117,6 +117,11 @@
       <tags>
         <tag>python</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[尝试给现有程序做个微端登录器]]></title>
+    <url>%2F2018%2F08%2F22%2FtestWeiDuan%2F</url>
+    <content type="text"><![CDATA[制作一个小型微端EXE，在这个exe负责登陆，登陆后从远程服务器下载资源，操作本地文件系统灵活控制本地资源，远程资源与主体程序逻辑流程交互。资源与程序无缝对接，将原来的程序解开关联分解优化成完全独立的部分比较费力。 后来基于WPF开发，添加了注册，登陆，密保问题找回，选择软件，下载软件，版本自动更新，异地登陆自动离线，软件上传信息，查询信息,建议栏的功能。并对Android移动端软件的数据通信(主要是中文编码的问题)作了修改。微端雏形144kb大小。 wpf默认是基于IE内核，总觉得对一些流行的框架及H5支持不好，后来又单独弄了个嵌入chrome内核的开发路线，之前的功能改到基于chrome内核的太麻烦了就没有改]]></content>
   </entry>
   <entry>
     <title><![CDATA[托管dll的插件式编程思路]]></title>
