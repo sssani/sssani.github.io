@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="OpenCV,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -89,18 +89,17 @@
 
 
 
-<meta name="description" content="Meanshift算法(视频分析)">
-<meta name="keywords" content="OpenCV">
+<meta name="description" content="别轻易给自己贴标签很多人的问题往往是这样的：    我觉得自己缺乏自信，请问如何才能培养自信？   我感觉我有社交障碍，请问如何才能跟别人更好的相处？   我觉得自己太敏感，别人不经意的一句话，我都会放在心上，很烦恼，怎么办？    。。。。。。其实，很多人都忽略了一点。许多问题，并非源于问题本身，而是来自于你对这些问题的看待角度和认知方式。自卑、亲密关系、焦虑压力、社交恐惧。。。许多问题来源于哪">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV的Python实践(5)">
-<meta property="og:url" content="http://yoursite.com/2019/05/20/OpenCvPythonPractice-5/index.html">
+<meta property="og:title" content="别轻易给自己贴标签">
+<meta property="og:url" content="http://yoursite.com/2019/08/23/article-0/index.html">
 <meta property="og:site_name" content="岁月无痕">
-<meta property="og:description" content="Meanshift算法(视频分析)">
+<meta property="og:description" content="别轻易给自己贴标签很多人的问题往往是这样的：    我觉得自己缺乏自信，请问如何才能培养自信？   我感觉我有社交障碍，请问如何才能跟别人更好的相处？   我觉得自己太敏感，别人不经意的一句话，我都会放在心上，很烦恼，怎么办？    。。。。。。其实，很多人都忽略了一点。许多问题，并非源于问题本身，而是来自于你对这些问题的看待角度和认知方式。自卑、亲密关系、焦虑压力、社交恐惧。。。许多问题来源于哪">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-20T08:09:29.747Z">
+<meta property="og:updated_time" content="2019-08-27T04:35:26.604Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV的Python实践(5)">
-<meta name="twitter:description" content="Meanshift算法(视频分析)">
+<meta name="twitter:title" content="别轻易给自己贴标签">
+<meta name="twitter:description" content="别轻易给自己贴标签很多人的问题往往是这样的：    我觉得自己缺乏自信，请问如何才能培养自信？   我感觉我有社交障碍，请问如何才能跟别人更好的相处？   我觉得自己太敏感，别人不经意的一句话，我都会放在心上，很烦恼，怎么办？    。。。。。。其实，很多人都忽略了一点。许多问题，并非源于问题本身，而是来自于你对这些问题的看待角度和认知方式。自卑、亲密关系、焦虑压力、社交恐惧。。。许多问题来源于哪">
 
 
 
@@ -130,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/20/OpenCvPythonPractice-5/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/23/article-0/">
 
 
 
 
 
-  <title>OpenCV的Python实践(5) | 岁月无痕</title>
+  <title>别轻易给自己贴标签 | 岁月无痕</title>
   
 
 
@@ -305,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/OpenCvPythonPractice-5/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/article-0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="KR">
@@ -322,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV的Python实践(5)</h1>
+          <h1 class="post-title" itemprop="name headline">别轻易给自己贴标签</h1>
         
 
         <div class="post-meta">
@@ -334,8 +333,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-20T00:26:25+08:00">
-                2019-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T12:34:46+08:00">
+                2019-08-23
               </time>
             
 
@@ -344,28 +343,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenCV的Python实践/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenCV的Python实践</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -394,22 +371,65 @@
       
 
       
-        <h2 id="Meanshift算法-视频分析"><a href="#Meanshift算法-视频分析" class="headerlink" title="Meanshift算法(视频分析)"></a>Meanshift算法(视频分析)</h2><a id="more"></a>
-<p>在视频中找到并跟踪目标对象</p>
-<h2 id="Camshift算法-视频分析"><a href="#Camshift算法-视频分析" class="headerlink" title="Camshift算法(视频分析)"></a>Camshift算法(视频分析)</h2><p>在视频中找到并跟踪目标对象</p>
-<h2 id="Lucas-Kanade光流"><a href="#Lucas-Kanade光流" class="headerlink" title="Lucas-Kanade光流"></a>Lucas-Kanade光流</h2><h2 id="BackgroundSubtractorMOG前-背景分割算法"><a href="#BackgroundSubtractorMOG前-背景分割算法" class="headerlink" title="BackgroundSubtractorMOG前/背景分割算法"></a>BackgroundSubtractorMOG前/背景分割算法</h2><p>静态背景图像估计</p>
-<h2 id="BackgroundSubtractorMOG2前-背景分割算法"><a href="#BackgroundSubtractorMOG2前-背景分割算法" class="headerlink" title="BackgroundSubtractorMOG2前/背景分割算法"></a>BackgroundSubtractorMOG2前/背景分割算法</h2><p>每个像素的贝叶斯分割</p>
-<h2 id="BackgroundSubtractorGMG分割算法"><a href="#BackgroundSubtractorGMG分割算法" class="headerlink" title="BackgroundSubtractorGMG分割算法"></a>BackgroundSubtractorGMG分割算法</h2><p>结合了静态背景图像估计和每个像素的贝叶斯分割</p>
-<h2 id="摄像机标定"><a href="#摄像机标定" class="headerlink" title="摄像机标定"></a>摄像机标定</h2><p>对畸变图像进行修复</p>
-<h2 id="姿势估计"><a href="#姿势估计" class="headerlink" title="姿势估计"></a>姿势估计</h2><p>3D效果</p>
-<h2 id="对极几何，对极约束"><a href="#对极几何，对极约束" class="headerlink" title="对极几何，对极约束"></a>对极几何，对极约束</h2><h2 id="立体图像的深度地图"><a href="#立体图像的深度地图" class="headerlink" title="立体图像的深度地图"></a>立体图像的深度地图</h2><h2 id="机器学习-K近邻"><a href="#机器学习-K近邻" class="headerlink" title="机器学习-K近邻"></a>机器学习-K近邻</h2><p>找出测试数据在特征空间中的最近的邻居。</p>
-<h2 id="支持向量机SVM"><a href="#支持向量机SVM" class="headerlink" title="支持向量机SVM"></a>支持向量机SVM</h2><h2 id="K值聚类"><a href="#K值聚类" class="headerlink" title="K值聚类"></a>K值聚类</h2><h2 id="计算摄影学"><a href="#计算摄影学" class="headerlink" title="计算摄影学"></a>计算摄影学</h2><ol>
-<li><p>图像去噪</p>
+        <h1 id="别轻易给自己贴标签"><a href="#别轻易给自己贴标签" class="headerlink" title="别轻易给自己贴标签"></a>别轻易给自己贴标签</h1><p>很多人的问题往往是这样的：  </p>
+<ul>
+<li>我觉得自己缺乏自信，请问如何才能培养自信？  </li>
+<li>我感觉我有社交障碍，请问如何才能跟别人更好的相处？  </li>
+<li>我觉得自己太敏感，别人不经意的一句话，我都会放在心上，很烦恼，怎么办？  </li>
+</ul>
+<p>。。。。。。<br>其实，很多人都忽略了一点。<br>许多问题，并非源于问题本身，而是来自于你对这些问题的看待角度和认知方式。<br>自卑、亲密关系、焦虑压力、社交恐惧。。。许多问题来源于哪里？来自你的内心。正是你的认知，造就了它们的诞生。<br>同样，解决问题的钥匙在哪里呢？也在你的内心。外在的指导也好，协助也好，种种方法其实都只是在帮助你让你更好的看清楚自己的内心，找到解开答案的钥匙。<br>很多朋友可能会难以接受这一点，他们认为：这些问题的确存在，给我造成很大困扰，怎么是我自己内心造成的？又怎么可能如此轻易的解决？<br>我想说，当你察觉到问题在哪里时，其实就已经解决一半的问题了。<br>不信的话，我们来看一个例子。<br>当我们说「我缺乏自信」时，我们想表达的是什么？<br>显然，我们想表达的应该是：我觉得自己有能力达成目标，但我的能力并不足以「确保」我达成目标，它的成功率只有50%、60%，总之不到100%，因此，我不确定我能否成功 —— 对吧？<br>但是，如果我们转换一下思维呢？既然你已经知道自己是「有能力」的，那么，这还能叫做「缺乏自信」吗？<br>举个例子，你觉得自己实现这两个目标的可能性有多大：  </p>
+<ul>
+<li>半年内，利用业余时间学会Python，做一个办公自动化程序。  </li>
+<li>现在辞职，开一家公司，并争取在3年内做到1个亿的总收入。  </li>
+</ul>
+<p>第一个目标，你的反应也许是「有点难，可以试试，不一定能成功」；而第二个目标，许多人的反应也许就是大喊「这怎么可能！」了。<br>那么，这两种情况，哪一种是真正的「缺乏自信」？显然，应该是第二种。<br>真正的「缺乏自信」，是认为自己「不具备相应的能力」「不可能做到」，并且完全不怀疑这一点。这才是缺乏自信。<br>而当你明确知道「自己是有能力的」，只是这个能力不足以让你100%确认时，你是「缺乏自信」吗？并不是。<br>你只是在害怕这种不确定性而已。<br>同样，其他问题也是相似的。  </p>
+<ul>
+<li>真正的社交障碍：没有人会喜欢我。  </li>
+<li>虚假的社交障碍：我有时表现得很好，有时表现得不好，当我表现得不好时，就会使别人不喜欢我，所以我要努力表现得很好。  </li>
+<li>真正的自卑：我什么都做不好。  </li>
+<li>虚假的自卑：我可能会成功，也可能会失败，失败了就说明我缺乏能力，所以我不能失败，一定要成功，啊，压力好大。  </li>
+<li>真正的敏感：我果然又出丑了，这下我在他们面前完全抬不起头了。  </li>
+<li>虚假的敏感：我知道别人可能并不在意，甚至可能压根儿就忘了，但我自己就是忘不了，总觉得很难堪，怎么办？  </li>
+</ul>
+<p>诸如此类。<br>这些内容，乍一看像是文字游戏，但我想跟你说的是什么呢？<br>真正的问题，往往根植于当事人的内心，根深蒂固，已经成为了他们认知方式和思维框架的一部分。他们完全无法觉察到，更没有办法去摆脱。<br>所以，我们会说，最难以改变的是什么呢？是那些坚定地认为自己「没有错」「没有病」「没有问题」的人。</p>
+<h1 id="固定心态和成长心态"><a href="#固定心态和成长心态" class="headerlink" title="固定心态和成长心态"></a>固定心态和成长心态</h1><p>当你认为你的能力是固定的，你表现得不好，就证明你自己不行时，你很可能就会从此裹足不前，再也无法进步。<br>而反过来，当你认为能力是可以增长的，你的每一次挫折和失败，都是在为未来积累经验时，你的能力和表现也会一步步提升。<br>我们是什么样的人，很大程度上取决于，我们如何看待自己，我们相信什么。<br>尽管成长心态理论也有不少争议，但它仍然是一个非常有用的理论：<br>它会促使你把目光从外界转移到内在，告诉你，除了你自己，并没有任何东西，束缚住你的脚步。  </p>
+<h1 id="大脑对不确定性的逃避"><a href="#大脑对不确定性的逃避" class="headerlink" title="大脑对不确定性的逃避"></a>大脑对不确定性的逃避</h1><p>前面提到，大多数时候，你压根并不是「缺乏自信」，而只是在害怕什么呢？不确定性。<br>其实，这就是许多问题的根源。<br>大脑不擅长处理不确定的事情。因此，面对不确定性时，为了避免「宕机」，大脑会采取捷径，调整我们的认知，给我们「贴标签」。<br>许多我们常犯的认知偏差和谬误，其实都肇始于对不确定性的逃避。<br>比如，最常见的这么几个：  </p>
+<ol>
+<li>非黑即白：「你究竟站在哪一边？」「这是友军，别开枪」<br>为什么一定要把讨论问题建构成「两军对垒」呢？为什么不能容忍中立存在？无非只是因为，大脑只能理解简单的「是或否」，难以处理更复杂的局面罢了。<br>所以，你会看到，在许多争论中，其实大家看的是什么呢？站队。  </li>
+<li>以偏概全：「四川人是不是都能吃辣」「我只是运气不好而已」<br>以偏概全是什么意思呢？抽取整体的一部分，用来作为对整体的判断和认知。它的原因也很简单：大脑难以处理「多因素」，因此，只能把其中某一个因素放大，来简化对不确定性的认知成本。<br>它大多数时候会导向刻板印象。这是一种方便的思维捷径，但如果仅凭刻板印象行事，我们永远都难以真正理解外部的世界。  </li>
+<li>心理过滤：「我早就说过我不行吧」「我早就知道它会失败」<br>心理过滤是指：从已有的事实或观念中抽取一部分，来支持自己的信念 —— 往往是负面的信念。在这种思维的驱使下，我们会在大脑里建立一个筛子，只允许那些「符合错误信念」的念头经过。久而久之，它就会愈发强化我们的观念，从而形成恶性循环。<br>为什么会这样呢？原因是，大脑惧怕损失，大脑厌恶损失，因此，它需要告诉自己「这部分损失是可预见的」，亦即，强行把不确定性转化为确定性，来「强化」自己的抗风险能力 —— 尽管那只是一种妄想。  </li>
+<li>条件思维：「我必须在5点前完成任务」「我不得不这样做，否则就会酿成大祸」<br>条件思维是一种负担。它是「自主性」的天敌，会束缚住我们的脚步，让我们遵从外界的指示行事。<br>原因也并不复杂：我们不愿意承担「自主选择」的后果和风险，因此，我们把选择转化为「条件限制」，让自己从「我要做」变成「我不得不做」，从而撇清自己的责任。  </li>
+</ol>
+<p>。。。。。。<br>类似的认知偏差还有很多，不一一列举了。大家可以看到，基本上，都来自大脑对不确定性的恐惧，以及「想走捷径」的思维。<br>正是这种思维，让我们陷入误区，徘徊在负面的想法和信念之中。<br>那么，如何改变这种情形呢？<br>很关键的一点，就是要重建我们的认知。  </p>
+<p>第一步，先把自己身上的标签，无论是别人给你贴的，还是自己贴上的，全部撕下来。<br>我们总是喜欢给自己归类，喜欢遵循某一种固有的模式去生活和工作，害怕成为「异类」。但也恰恰是这种行为模式，束缚住我们自己，让我们陷入类别的桎梏和限制之中。<br>简而言之：<br>你认为自己是什么样的人，你就会按照这样的模式去生活，从而真的成为这样的人。<br>这就是一个负向的系统回路。<br>如何打破这个回路呢？请撕下自己的标签。<br>把「我是一个什么样的人」的认知丢掉。让自己「归零」。<br>取而代之的是什么呢？<br>我会建议你，用这个「BHDW模型」，来帮助自己规划和思考：  </p>
+<ul>
+<li>Be：我想成为一个什么样的人？  </li>
+<li>Have：为了成为这样的人，我需要实现什么目标？  </li>
+<li>Do: 为了实现这个目标，我需要采取什么行动？  </li>
+<li>What: 在这个过程中，我需要遵循哪些原则？制定什么样的标准？  </li>
+</ul>
+<p>这是我经常使用的模型。它可以帮助你，去关注那些真正有用的事物，避免画地为牢。<br>改变自己的认知，从「如何才能走出困境」「如何才能改变现状」的思路中走出来，把目光聚焦到可能性上面，去思考「我能够做些什么」「我可以争取到什么」,这才是一种更积极、更有效的思维方式。</p>
+<h1 id="几个技巧"><a href="#几个技巧" class="headerlink" title="几个技巧"></a>几个技巧</h1><ol>
+<li><p>可能性区域<br>大多数情况下，面对充满不确定性的未来，我们往往看到的，都是最极端的那一面。我们会想象最坏的后果，沉溺在焦虑和压力中，一遍遍反问自己：<br>万一它发生了，怎么办？<br>这叫做灾难性思维。它是人类进化过程中的一种能力，用来应对环境风险。但在现代社会里，它带给我们的，更多的是无谓的压力。<br>如何应对呢？不妨问自己这三个问题：  </p>
+<pre><code>事情最糟糕的结果是什么？  
+事情最好的结果是什么？  
+事情最有可能的结果是什么？      
+</code></pre><p> 这三个问题不是凭空拍脑袋决定，而是需要搜集信息，慎重判断，考虑诸多可能性。这个过程，其实也是让自己平静下来，慢慢调整认知的过程。 </p>
 </li>
-<li><p>图像修补</p>
+<li>重新定义<br>这个技巧，可以结合上面「重建认知」使用。<br>举个例子：「我是一个性格古怪的人，所以没有人会喜欢我。」<br>那么，不妨先问自己：什么叫做「性格古怪」？它的定义是什么？<br>然后，列出你认为自己「性格古怪」的证据，一条条写出来。<br>你或许会发现：感觉自己很奇葩，但这么一写出来，似乎、好像、大概……其实也没那么多？<br>下一步，针对你列出的每一条证据，问自己：它是否有别的解释？别人会如何看待它？<br>最后，再重新回到「性格古怪」的定义，问自己：经过这么几步之后，你在多大程度上，仍然认为自己「性格古怪」？<br>经过以上这个过程，我想，你一定能对自己，有一个重新的认知。  </li>
+<li>魔鬼辩护人<br>什么意思呢？简而言之：哪怕你觉得自己的看法是「相当正确」的，也不妨试着站在对立面，为对立的观点辩护。<br>试着去搜集相应的证据，列出逻辑支撑和论证，甚至提出天马行空的可能性，来想办法强化对立观点，弱化你原来的立场。<br>这既是一种思维锻炼，又能非常有效地帮助你从更高层次鸟瞰全局，从而更客观、理性地认识自己。  </li>
+<li><p>重定向<br>这是一个非常简单的技巧：把「我应该」「我必须」，换成「我可以」「我能够」。<br>是不是看起来很简单，毫无技术含量？但即使是这样轻描淡写的一步，也能够有效地帮你松绑，重新激活你对掌控感、自主性的感知。  </p>
+<ul>
+<li>「没有时间了，我必须今天把它做完」→「我可以在今天之内把它做完」。  </li>
+<li>「今天又要忙了，一大堆事情等着我去做」→「我有足够的时间完成最重要的事情，让我看看可以做些什么」。  </li>
+<li><p>「我没有别的选择了，只能这样做」→「这是我的选择，我决定要这样做」。  </p>
+<p>慢慢练习这种方式，直到习惯，你会发现，许多原本以为的「没有办法」，其实都只是自欺欺人而已。<br>当你能够直面「一切都是我的选择」时，<br>许多问题都将迎刃而解。  </p>
+</li>
+</ul>
 </li>
 </ol>
-<h2 id="Haar分类器进行面部检测-眼部检测"><a href="#Haar分类器进行面部检测-眼部检测" class="headerlink" title="Haar分类器进行面部检测(眼部检测)"></a>Haar分类器进行面部检测(眼部检测)</h2>
+<p>改变认知是一个比较长的过程，一起加油。</p>
+
       
     </div>
     
@@ -423,12 +443,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
-          
-        </div>
       
 
       
@@ -454,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/19/OpenCvPythonPractice-4/" rel="next" title="OpenCV的Python实践(4)">
-                <i class="fa fa-chevron-left"></i> OpenCV的Python实践(4)
+              <a href="/2019/08/20/AlgorithmicLearning/" rel="next" title="经典排序算法学习">
+                <i class="fa fa-chevron-left"></i> 经典排序算法学习
               </a>
             
           </div>
@@ -464,8 +478,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/20/crawlingDataHello/" rel="prev" title="爬取数据">
-                爬取数据 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/27/article-1/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Meanshift算法-视频分析"><span class="nav-number">1.</span> <span class="nav-text">Meanshift算法(视频分析)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camshift算法-视频分析"><span class="nav-number">2.</span> <span class="nav-text">Camshift算法(视频分析)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lucas-Kanade光流"><span class="nav-number">3.</span> <span class="nav-text">Lucas-Kanade光流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BackgroundSubtractorMOG前-背景分割算法"><span class="nav-number">4.</span> <span class="nav-text">BackgroundSubtractorMOG前/背景分割算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BackgroundSubtractorMOG2前-背景分割算法"><span class="nav-number">5.</span> <span class="nav-text">BackgroundSubtractorMOG2前/背景分割算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BackgroundSubtractorGMG分割算法"><span class="nav-number">6.</span> <span class="nav-text">BackgroundSubtractorGMG分割算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摄像机标定"><span class="nav-number">7.</span> <span class="nav-text">摄像机标定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#姿势估计"><span class="nav-number">8.</span> <span class="nav-text">姿势估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对极几何，对极约束"><span class="nav-number">9.</span> <span class="nav-text">对极几何，对极约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立体图像的深度地图"><span class="nav-number">10.</span> <span class="nav-text">立体图像的深度地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习-K近邻"><span class="nav-number">11.</span> <span class="nav-text">机器学习-K近邻</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机SVM"><span class="nav-number">12.</span> <span class="nav-text">支持向量机SVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K值聚类"><span class="nav-number">13.</span> <span class="nav-text">K值聚类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算摄影学"><span class="nav-number">14.</span> <span class="nav-text">计算摄影学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Haar分类器进行面部检测-眼部检测"><span class="nav-number">15.</span> <span class="nav-text">Haar分类器进行面部检测(眼部检测)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#别轻易给自己贴标签"><span class="nav-number">1.</span> <span class="nav-text">别轻易给自己贴标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#固定心态和成长心态"><span class="nav-number">2.</span> <span class="nav-text">固定心态和成长心态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大脑对不确定性的逃避"><span class="nav-number">3.</span> <span class="nav-text">大脑对不确定性的逃避</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#几个技巧"><span class="nav-number">4.</span> <span class="nav-text">几个技巧</span></a></li></ol></div>
             
 
           </div>
