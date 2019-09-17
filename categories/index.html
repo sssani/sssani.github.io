@@ -89,17 +89,14 @@
 
 
 
-<meta name="description" content="Make a difference,Life is fun">
 <meta property="og:type" content="website">
 <meta property="og:title" content="分类">
 <meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="岁月无痕">
-<meta property="og:description" content="Make a difference,Life is fun">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-16T03:40:22.010Z">
+<meta property="og:updated_time" content="2019-09-17T18:07:53.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="Make a difference,Life is fun">
 
 
 
@@ -134,7 +131,6 @@
 
 
 
-
   <title>分类 | 岁月无痕</title>
   
 
@@ -159,6 +155,9 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
+
+
+
   <div class="site-meta ">
     
 
@@ -186,6 +185,9 @@
 <nav class="site-nav">
   
 
+  
+  
+	
   
     <ul id="menu" class="menu">
       
@@ -278,7 +280,6 @@
     </div>
   
 </nav>
-
 
 
  </div>
@@ -437,6 +438,28 @@
   </span>
   <span class="author" itemprop="copyrightHolder">KR</span>
 
+  
+  
+  <!-- zhangshuai -->
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+    <script>
+        var now = new Date(); 
+        function createtime() { 
+            var grt= new Date("02/03/2015 00:00:00");//此处修改你的建站时间或者网站上线时间 
+            now.setTime(now.getTime()+250); 
+            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+            document.getElementById("timeDate").innerHTML = " &nbsp;&nbsp;&nbsp; "+dnum+" 天 "; 
+            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+        } 
+    setInterval("createtime()",250);
+    </script>
+ 
+  
   
 </div>
 
