@@ -1860,7 +1860,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #38bf53;
+  background: #f5f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3666,7 +3666,7 @@ span.site-title {
   display: block;
   width: 320px;
   background-size: 320px 659px;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   box-shadow: inset 2px 2px 40px #bdb2b2;
   background-image: url("/images/bk.jpg");
   position: fixed;
