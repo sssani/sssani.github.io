@@ -1860,7 +1860,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f5f;
+  background: #4d45f7;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3012,6 +3012,10 @@ hr {
 #teamnewslist li:hover b {
   color: #c01e22;
 }
+.aplayer {
+  width: 200px;
+  heigt: 50px;
+}
 .logo-line-before,
 .logo-line-after {
   display: none;
@@ -4119,29 +4123,6 @@ a.my-post-title-link {
 ::-webkit-scrollbar-button:start {
   width: 10px;
   height: 10px;
-}
-.back-to-top.back-to-top-on {
-  bottom: unset;
-  top: calc(100vh - 900px - 200px);
-}
-.back-to-top {
-  width: 70px;
-  height: 360px;
-  top: -900px;
-  bottom: unset;
-  transition: all 0.5s ease-in-out;
-  background: url("https://site-1258928558.cos.ap-guangzhou.myqcloud.com/scroll.png");
-}
-.back-to-top {
-  box-sizing: border-box;
-  position: fixed;
-  z-index: 1050;
-  padding: 0 6px;
-  font-size: 12px;
-  opacity: 1;
-  color: #fff;
-  cursor: pointer;
-  text-align: center;
 }
 .post-body p a {
   color: #0593d3;

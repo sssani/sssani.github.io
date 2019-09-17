@@ -378,7 +378,7 @@
       
 
       
-        <p>unity版本4.6.3，遮挡剔除比以前版本更容易使用，设置好static，直接bake即可，打开Occlusion窗口选中Visualization(其下select a Camera from the scene选中场景里主角camera)可在编辑器里看效果。  </p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>unity版本4.6.3，遮挡剔除比以前版本更容易使用，设置好static，直接bake即可，打开Occlusion窗口选中Visualization(其下select a Camera from the scene选中场景里主角camera)可在编辑器里看效果。  </p>
 <a id="more"></a>
 <p><img src="http://ww3.sinaimg.cn/large/7ce5b833gw1f2w2v4pz60g20e50a0kjl.gif" alt="image">  </p>
 <p>经测试，通过遮挡剔除大幅降低了drawcalls，视场景模型不同降低幅度不同。其实所有东西都已经加载进内存了，显示不显示出来能缓解大场景渲染Rendering网格贴图方面压力，想要优化内存还是要从其他如LOD,AssetBundle,机制等方面入手优化内存。  </p>

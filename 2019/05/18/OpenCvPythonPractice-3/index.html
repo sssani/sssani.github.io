@@ -411,7 +411,7 @@
       
 
       
-        <h2 id="图像梯度"><a href="#图像梯度" class="headerlink" title="图像梯度"></a>图像梯度</h2><a id="more"></a>
+        <script src="\assets\js\APlayer.min.js"> </script><h2 id="图像梯度"><a href="#图像梯度" class="headerlink" title="图像梯度"></a>图像梯度</h2><a id="more"></a>
 <p>&emsp;&emsp;图像梯度原理：简单来说就是求导。<br>&emsp;&emsp;OpenCV提供了三种不同的梯度滤波器，或者说高通滤波器：Sobel，Scharr和Laplacian。Sobel和Scharr是求一阶或二阶导数。Scharr是对Sobel（使用小的卷积核求解梯度角度时）的优化，Laplacian是求二阶导数。</p>
 <ol>
 <li>Sobel算子和Scharr算子<br>&emsp;&emsp;Sobel算子是高斯平滑与微分操作的结合体，它的抗噪音能力很好。可以设定求导的方向（xorder或yorder）。还可以设定使用的卷积核的大小（ksize），如果ksize=-1，会使用3x3的Scharr滤波器，效果会更好，若速度相同，在使用3x3滤波器时尽量使用Scharr。<br>&emsp;&emsp;3x3的Scharr滤波器卷积核如下：<ul>
